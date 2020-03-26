@@ -8,7 +8,8 @@ steps:
             def image = deploy.dockerBuildWithRegister(
               dockerfile: "Dockerfile",
               context: ".",
-              address: "yugougou/apiserver",
-              tag: "nexus-backup"+env.VERSION
+              credentials: "alaudak8s",
+              address: "alaudak8s/nexus-backup",
+              tag: "2.6"
             )
             image.start().push()
