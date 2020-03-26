@@ -5,11 +5,12 @@ steps:
         container: tools
         groovy:
           - |+
-            def image = deploy.dockerBuildWithRegister(
-              dockerfile: "Dockerfile",
-              context: ".",
-              credentials: "alaudak8s",
-              address: "alaudak8s/nexus-backup",
-              tag: "2.6"
-            )
-            image.start().push()
+            deploy.BuildMultiArchImage(
+               registry: "armharbor.alauda.cn",
+               dockerfile: "Dockerfile",
+               address: "armharbor.alauda.cn/alaudak8s/nexus-backup",
+               platforms:"linux/arm64",
+               push: true,
+               tag: "2.6.1",
+               armBuild: true,
+             )
