@@ -1,0 +1,14 @@
+steps:
+  - name: Docker
+    parallel:
+      - name:  nexus-backup
+        container: tools
+        groovy:
+          - |+
+            def image = deploy.dockerBuildWithRegister(
+              dockerfile: "Dockerfile",
+              context: ".",
+              address: "yugougou/apiserver",
+              tag: "nexus-backup"+env.VERSION
+            )
+            image.start().push()
