@@ -5,6 +5,7 @@ steps:
         container: tools
         groovy:
           - |+
+            sh 'git clone https://github.com/travelaudience/docker-nexus-backup.git && git reset --hard 0cc0b2ee'
             deploy.BuildMultiArchImage(
                registry: "armharbor.alauda.cn",
                dockerfile: "Dockerfile",
